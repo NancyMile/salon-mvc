@@ -22,7 +22,8 @@ class loginController{
         echo "recover";
     }
 
-    public static function create(){
-        echo "create";
+    public static function create(Router $router){
+        //echo "create";
+        $router->render('auth/create-account',[]);
     }
 }
