@@ -14,8 +14,9 @@ class loginController{
         echo "Logout";
     }
 
-    public static function forgot(){
-        echo "forgot";
+    public static function forgot(Router $router){
+        //echo "forgot";
+        $router->render('auth/forgot',[]);
     }
 
     public static function recover(){
