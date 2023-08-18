@@ -68,4 +68,24 @@ class loginController{
     public static function message(Router $router){
         $router->render('auth/message');
     }
+
+    public static function verify(Router $router){
+        $alerts = [];
+        $token = s($_GET['token']);
+        $user = User::where('token',$token);
+        if(empty($user)){
+            //error
+            User::setAlerta('error','Invalid token.');
+        }else{
+            //update verified user
+            $user->verified = 1;
+            $user->token = '';
+            $user->guardar();
+
+            User::setAlerta('success','User verified.');
+        }
+
+        $alerts = User::getAlertas();
+        $router->render('auth/verify-account',['alerts' => $alerts]);
+    }
 }
