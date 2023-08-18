@@ -42,7 +42,8 @@ class loginController{
                 if($result->num_rows){
                     $alerts = User::getAlertas();
                 }else{
-                    debuguear("User doesn't exists.");
+                    //debuguear("User doesn't exists.");
+                    $user->hashPassword();
                 }
             }
         }
