@@ -35,7 +35,10 @@ class loginController{
             $user->sincronizar($_POST);
 
             $alerts = $user->validateNewAccount();
-            //debuguear($alerts);
+            //check that alerts is empty
+            if(empty($alerts)){
+
+            }
         }
         $router->render('auth/create-account',['user' => $user, 'alerts' => $alerts]);
     }

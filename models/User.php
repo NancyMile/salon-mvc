@@ -33,7 +33,22 @@
         if(!$this->name){
             self::$alertas['error'][] = 'Please add name.';
         }
+        if(!$this->lastname){
+            self::$alertas['error'][] = 'Please add lastname';
+        }
+        if(!$this->phone){
+            self::$alertas['error'][] = 'Please add phone';
+        }
+        if(!$this->email){
+            self::$alertas['error'][] = 'Please add email';
+        }
+        if(!$this->password){
+            self::$alertas['error'][] = 'Please add password';
+        }
+        if(strlen($this->password) < 6){
+            self::$alertas['error'][] = 'Password should have min 6 characters';
+        }
+
         return self::$alertas;
     }
-
  }
