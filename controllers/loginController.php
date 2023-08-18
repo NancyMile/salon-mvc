@@ -44,6 +44,10 @@ class loginController{
                 }else{
                     //debuguear("User doesn't exists.");
                     $user->hashPassword();
+
+                    //generate unic token
+                    $user->createToken();
+
                 }
             }
         }
