@@ -24,8 +24,8 @@
         $this->email = $args['email'] ?? '';
         $this->password = $args['password'] ?? '';
         $this->phone = $args['phone'] ?? '';
-        $this->admin = $args['admin'] ?? null;
-        $this->verified = $args['verified'] ?? null;
+        $this->admin = $args['admin'] ?? '0';
+        $this->verified = $args['verified'] ?? '0';
         $this->token = $args['token'] ?? '';
     }
 

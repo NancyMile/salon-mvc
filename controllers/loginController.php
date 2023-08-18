@@ -53,9 +53,19 @@ class loginController{
                     $email = new Email($user->name, $user->email, $user->token);
                     //send confirmation
                     $email->sendConfirmation();
+
+                    //save user
+                    $result = $user->guardar();
+                    if($result){
+                        header('Location: /message');
+                    }
                 }
             }
         }
         $router->render('auth/create-account',['user' => $user, 'alerts' => $alerts]);
+    }
+
+    public static function message(Router $router){
+        $router->render('auth/message');
     }
 }
