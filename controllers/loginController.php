@@ -37,7 +37,13 @@ class loginController{
             $alerts = $user->validateNewAccount();
             //check that alerts is empty
             if(empty($alerts)){
+                $result = $user->userExists();
 
+                if($result->num_rows){
+                    $alerts = User::getAlertas();
+                }else{
+                    debuguear("User doesn't exists.");
+                }
             }
         }
         $router->render('auth/create-account',['user' => $user, 'alerts' => $alerts]);

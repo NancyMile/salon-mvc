@@ -3,7 +3,7 @@
 
  class User extends ActiveRecord {
     //data base
-    protected static $tabla = 'Users';
+    protected static $tabla = 'users';
     protected static $columnasDB = ['id','name','lastname','email','password','phone','admin','verified','token'];
 
     public $id;
@@ -50,5 +50,16 @@
         }
 
         return self::$alertas;
+    }
+
+    //check if user exists
+    public function userExists(){
+        $query = "SELECT * FROM ".self::$tabla." WHERE email = '".$this->email."' LIMIT 1";
+        $result = self::$db->query($query);
+        //debuguear($result);
+        if($result->num_rows){
+            self::$alertas['error'][] = 'The user already exists.';
+        }
+        return $result;
     }
  }
