@@ -1,6 +1,6 @@
 <h1 class="page-name">Create Account</h1>
 <p class="page-description">Please fill the form</p>
-<?php  //debuguear($user) ?>
+<?php include_once __DIR__."/../templates/alerts.php"; ?>
 <form class="form" action="/create-account" method="POST">
     <div class="field">
         <label for="name" >name</label>

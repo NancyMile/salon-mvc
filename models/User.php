@@ -27,4 +27,13 @@
         $this->verified = $args['verified'] ?? null;
         $this->token = $args['token'] ?? '';
     }
+
+    //validation messages creating an account
+    public function validateNewAccount(){
+        if(!$this->name){
+            self::$alertas['error'][] = 'Please add name.';
+        }
+        return self::$alertas;
+    }
+
  }
