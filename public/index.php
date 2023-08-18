@@ -22,7 +22,8 @@ $router->post('/recover',[loginController::class,'recover']);
 $router->get('/create-account',[loginController::class,'create']);
 $router->post('/create-account',[loginController::class,'create']);
 
-
+//verify account
+$router->get('/verify-account',[loginController::class,'verify']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();
