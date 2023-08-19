@@ -125,7 +125,7 @@ class ActiveRecord {
 
     // Busca un registro por condicion
     public static function where($column, $value) {
-        $query = "SELECT * FROM " . static::$tabla  ." WHERE ".$column." = '".$value." '";
+        $query = "SELECT * FROM " . static::$tabla  ." WHERE ".$column." = '".s($value)."'";
         //debuguear($query);
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;

@@ -9,7 +9,20 @@ class loginController{
 
     public static function login(Router $router){
         //echo "Login";
-        $router->render('auth/login');
+        $alerts = [];
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $auth = new User($_POST);
+            $alerts = $auth->validateLogin();
+
+            if(empty($alerts)){
+                //check that user exists
+                $user = User::where('email',$auth->email);
+                debuguear($user);
+            }
+        }
+
+        $router->render('auth/login',['alerts' => $alerts]);
     }
 
     public static function logout(){

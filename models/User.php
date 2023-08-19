@@ -53,6 +53,16 @@
         return self::$alertas;
     }
 
+    public function validateLogin(){
+        if(!$this->email){
+            self::$alertas['error'][] = 'Please add email.';
+        }
+        if(!$this->password){
+            self::$alertas['error'][] = 'Please add password.';
+        }
+        return self::$alertas;
+    }
+
     //check if user exists
     public function userExists(){
         $query = "SELECT * FROM ".self::$tabla." WHERE email = '".$this->email."' LIMIT 1";
