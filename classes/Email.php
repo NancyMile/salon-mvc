@@ -44,4 +44,33 @@ use PHPMailer\PHPMailer\PHPMailer;
         //send email
         $email->send();
     }
+
+    public function sendInstructions(){
+        //create object email
+        $email = new PHPMailer();
+        $email->isSMTP();
+        $email->Host = 'sandbox.smtp.mailtrap.io';
+        $email->SMTPAuth = true;
+        $email->Port = 2525;
+        $email->Username = '';
+        $email->Password = '';
+
+        $email->setFrom('salonAccount@test.com');
+        $email->addAddress('salonAccount@tests.com','salon.com');
+        $email->Subject = 'Reset Password';
+
+        //set HTML
+        $email->isHTML(TRUE);
+        $email-> CharSet = 'UFT-8';
+
+        $content = "<html>";
+        $content .= "<p> Hi: ".$this->name." Reset password by click following link</p>";
+        $content .= "<a href='http://localhost:8080/recover?token=".$this->token."'>Reset Password</a>";
+        $content .= "<p>If you did not create a new account, please ignore the email.</p>";
+        $content .= "</html>";
+        $email->Body = $content;
+
+        //send email
+        $email->send();
+    }
  }

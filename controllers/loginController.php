@@ -66,6 +66,9 @@ class loginController{
                     $user->createToken();
                     $user->guardar();
                     //send email
+                    $email = new Email($user->name, $user->email, $user->token);
+                    $email->sendInstructions();
+
                     User::setAlerta('success','Check your email');
                 }else{
                     User::setAlerta('error', 'User does not exist or is not verified yet.');
@@ -76,8 +79,41 @@ class loginController{
         $router->render('auth/forgot',['alerts' => $alerts]);
     }
 
-    public static function recover(){
-        echo "recover";
+    public static function recover(Router $router){
+        //echo "recover";
+        $alerts = [];
+        $error = false;
+
+        $token = s($_GET['token']);
+        //search user by token
+        $user = User::where('token',$token);
+
+        if(empty($user)){
+            User::setAlerta('error','Invakid token');
+            $error = true;
+        }
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+            $password = new User($_POST);
+            $alerts = $password->validatePassword();
+
+            if(empty($alerts)){
+                $user->password = null;
+
+                $user->password = $password->password;
+                $user->hashPassword();
+                $user->token = null;
+
+                $result = $user->guardar();
+
+                if ($result){
+                    header('location: /');
+                }
+            }
+        }
+        $alerts = User::getAlertas();
+        $router->render('auth/recover',['alerts' => $alerts, 'error' => $error]);
     }
 
     public static function create(Router $router){

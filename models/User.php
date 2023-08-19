@@ -70,6 +70,16 @@
         return self::$alertas;
     }
 
+    public function validatePassword(){
+        if(!$this->password){
+            self::$alertas['error'][] = 'Please add password.';
+        }
+        if(strlen($this->password) < 6){
+            self::$alertas['error'][] = 'Password should have min 6 characters';
+        }
+        return self::$alertas;
+    }
+
     //check if user exists
     public function userExists(){
         $query = "SELECT * FROM ".self::$tabla." WHERE email = '".$this->email."' LIMIT 1";
