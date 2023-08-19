@@ -81,4 +81,8 @@
     public function createToken(){
         $this->token = uniqid();
     }
+
+    public function checkPassAndVerified($password){
+        $result = password_verify($password, $this->password);
+    }
  }
