@@ -21,6 +21,22 @@ class loginController{
                  if($user){
                     //verify password
                     $user->checkPassAndVerified($auth->password);
+                    //autenticate user
+                    session_start();
+                    $_SESSION['id'] = $user->id;
+                    $_SESSION['name'] = $user->name;
+                    $_SESSION['email'] = $user->email;
+                    $_SESSION['login'] = true;
+
+                    //redirect
+                    if($user->admin === '1'){
+                        //admin
+                        header('location: /admin');
+                    }else{
+                        //client
+                        header('location: /appointment');
+                    }
+
                  }else{
                     User::setAlerta('error','User not found');
                  }

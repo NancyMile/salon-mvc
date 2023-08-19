@@ -79,10 +79,14 @@
     }
 
     public function createToken(){
-        $this->token = uniqid();
+        $this->token = s(uniqid());
     }
 
     public function checkPassAndVerified($password){
         $result = password_verify($password, $this->password);
+
+        if(!$result || !$this->verified){
+            self::$alertas['error'][] = "Incorrect password or account not verified yet.";
+        }
     }
  }
