@@ -63,6 +63,13 @@
         return self::$alertas;
     }
 
+    public function validateEmail(){
+        if(!$this->email){
+            self::$alertas['error'][] = 'Please add email.';
+        }
+        return self::$alertas;
+    }
+
     //check if user exists
     public function userExists(){
         $query = "SELECT * FROM ".self::$tabla." WHERE email = '".$this->email."' LIMIT 1";

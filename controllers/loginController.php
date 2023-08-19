@@ -53,7 +53,27 @@ class loginController{
 
     public static function forgot(Router $router){
         //echo "forgot";
-        $router->render('auth/forgot',[]);
+        $alerts = [];
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $auth = new User($_POST);
+            $alerts = $auth->validateEmail();
+            if(empty($alerts)){
+                //check that email exists
+                $user = User::where('email',$auth->email);
+
+                if($user && $user->verified ==='1'){
+                    //reate new token to verify user
+                    $user->createToken();
+                    $user->guardar();
+                    //send email
+                    User::setAlerta('success','Check your email');
+                }else{
+                    User::setAlerta('error', 'User does not exist or is not verified yet.');
+                }
+            }
+        }
+        $alerts = User::getAlertas();
+        $router->render('auth/forgot',['alerts' => $alerts]);
     }
 
     public static function recover(){
