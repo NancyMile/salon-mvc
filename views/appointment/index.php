@@ -8,11 +8,26 @@
     </div>
     <div class="section" id="step-2">
         <h1>Details and appoinment</h1>
-        <p>Your Details and aoopontment date.</p>
+        <p class="text-center">Your Details and aoopontment date.</p>
+        <form class="form">
+            <div class="field">
+                <label for="name">Name</label>
+                <input type="text" placeholder="name" id="name" value="<?php echo $name ?>" disabled>
+            </div>
+            <div class="field">
+                <label for="date">Date</label>
+                <input type="date" id="date">
+            </div>
+            <div class="field">
+                <label for="time">time</label>
+                <input type="time" id="time">
+            </div>
+            <input type="submit" value="Book" class="button">
+        </form>
     </div>
     <div class="section" id="step-3">
         <h1>Resumen</h1>
-        <p>Please Check the details are correct.</p>
+        <p class="text-center">Please Check the details are correct.</p>
         <div class="services-list" id="services"></div>
     </div>
 </div>
