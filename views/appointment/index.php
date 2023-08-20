@@ -2,19 +2,13 @@
 <p class="page-description"> Appointments</p>
 <?php include_once __DIR__."/../templates/alerts.php"; ?>
 <div id="app">
-    <nav class="tabs">
-        <button type="button" data-step="1" class="active">Services</button>
-        <button type="button" data-step="2">Appointment Info</button>
-        <button type="button" data-step="3">Resumen</button>
-
-    </nav>
     <div class="section" id="step-1">
         <h1>Select Services</h1>
         <div class="services-list" id="services"></div>
     </div>
     <div class="section" id="step-2">
         <h1>Details and appoinment</h1>
-        <p class="text-center">Your Details and appontment date.</p>
+        <p class="text-center">Your Details and aoopontment date.</p>
         <form class="form">
             <div class="field">
                 <label for="name">Name</label>
