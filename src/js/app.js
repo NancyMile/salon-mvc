@@ -2,6 +2,13 @@ let step = 1;
 let initialStep = 1;
 let lastStep = 3;
 
+const appointment = {
+    name: '',
+    date: '',
+    time: '',
+    services: []
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 })
@@ -118,6 +125,9 @@ function displayServices(services) {
         const serviceDiv = document.createElement('DIV');
         serviceDiv.classList.add('service');
         serviceDiv.dataset.idService = id  //data-id-service = id ej 1 ...
+        serviceDiv.onclick = function () {
+            selecteService(service)
+        };
 
         //console.log(serviceDiv);
 
@@ -128,4 +138,14 @@ function displayServices(services) {
         document.querySelector('#services').appendChild(serviceDiv);
 
     });
+}
+
+function selecteService(service) {
+    //console.log('from select service');
+    //console.log(service)
+    const { services } = appointment;
+
+    //takes a copy of services and adds the new service
+    appointment.services = [...services, service];
+    console.log(appointment);
 }
