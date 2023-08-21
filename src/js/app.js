@@ -12,6 +12,7 @@ function startApp() {
     paginationButtons(); //adds or removes pagination buttons
     previousPage();
     nextPage();
+    queryingAPI();
 }
 
 function displaySection() {
@@ -86,4 +87,16 @@ function nextPage() {
         paginationButtons();
         displaySection();
     })
+}
+
+async function queryingAPI() {
+
+    try {
+        const url = 'http://localhost:8080/services';
+        const result = await fetch(url);
+        const services = await result.json();
+        console.log(services);
+    } catch (error) {
+        console.log(error);
+    }
 }
