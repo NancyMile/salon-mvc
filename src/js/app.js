@@ -159,14 +159,14 @@ function selectService(service) {
     if (services.some(alreadyAdded => alreadyAdded.id === id)) {
         //remmove service
         appointment.services = services.filter(alreadyAdded => alreadyAdded.id !== id);
-        console.log(appointment);
+        //console.log(appointment);
         divService.classList.remove('selected');
 
     } else {
         //add new service
         //takes a copy of services and adds the new service
         appointment.services = [...services, service];
-        console.log(appointment);
+        //console.log(appointment);
         divService.classList.add('selected');
     }
 }
@@ -235,11 +235,52 @@ function displayAlert(message, type, element,removeAlert = true) {
 function displayResume() {
     const resume = document.querySelector('.content-resume');
 
+    // clean resume
+    while (resume.firstChild) {
+        resume.removeChild(resume.firstChild);
+    }
+
     if (Object.values(appointment).includes('') || appointment.services.length === 0)  {
         //console.log('Datos missing');
         displayAlert('Services,date or time missing.','error','.content-resume',false);
-    } else {
-        console.log('all good');
+
+        return;
     }
+
+    //all good, now format div resume
+    const { name, date, time, services } = appointment;
+
+    const clientName = document.createElement('P');
+    clientName.innerHTML = `<span>Name:</span>${name}`;
+
+    const appointmentDate = document.createElement('P');
+    appointmentDate.innerHTML = `<span>Date:</span>${date}`;
+
+    const appointmentTime = document.createElement('P');
+    appointmentTime.innerHTML = `<span>Time:</span>${time}`;
+
+
+    services.forEach(service => {
+        const { id, name, price } = service;
+        const containerService = document.createElement('DIV');
+        containerService.classList.add('container-service')
+
+        const textService = document.createElement('P');
+        textService.textContent = name;
+
+        const priceService = document.createElement('P');
+        priceService.innerHTML = `<span>Price:</span>$${price}`;
+
+        containerService.appendChild(textService);
+        containerService.appendChild(priceService);
+
+        //add on resume
+        resume.appendChild(containerService);
+    })
+
+    resume.appendChild(clientName);
+    resume.appendChild(appointmentDate);
+    resume.appendChild(appointmentTime);
+
     //console.log(appointment);
 }
