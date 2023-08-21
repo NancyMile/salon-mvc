@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 function startApp() {
     displaySection();
     tabs(); //change sections whenever click on a tab
+    paginationButtons(); //adds or removes pagination buttons
 }
 
 function displaySection() {
@@ -39,7 +40,26 @@ function tabs() {
 
             step = parseInt(e.target.dataset.step);
             displaySection();
-
+            paginationButtons();
         })
     })
+}
+
+function paginationButtons() {
+    const prevPage = document.querySelector('#previous');
+    const nextPage = document.querySelector('#next');
+
+    if (step === 1) {
+        prevPage.classList.add('hide');
+        nextPage.classList.remove('hide');
+    }
+    else if (step === 3) {
+        prevPage.classList.remove('hide');
+        nextPage.classList.add('hide');
+    }
+    else {
+        prevPage.classList.remove('hide');
+        nextPage.classList.remove('hide');
+    }
+
 }
