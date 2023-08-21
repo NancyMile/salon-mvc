@@ -30,7 +30,7 @@
             <input type="submit" value="Book" class="button">
         </form>
     </div>
-    <div class="section" id="step-3">
+    <div class="section content-resume" id="step-3">
         <h1>Resumen</h1>
         <p class="text-center">Please Check the details are correct.</p>
         <div class="services-list" id="services"></div>

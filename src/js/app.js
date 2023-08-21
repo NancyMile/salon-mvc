@@ -23,6 +23,7 @@ function startApp() {
     clientName();
     selectDate(); //adds date to the appointment object
     seletTime(); // adds time on appoiment object
+    displayResume();
 }
 
 function displaySection() {
@@ -72,6 +73,7 @@ function paginationButtons() {
     else if (step === 3) {
         prevPage.classList.remove('hide');
         nextPage.classList.add('hide');
+        displayResume();
     }
     else {
         prevPage.classList.remove('hide');
@@ -182,7 +184,7 @@ function selectDate() {
         if ([0, 6].includes(day)) {
             //no working on weekends
             e.target.value = ''
-            displayAlert('Close on weekends','error');
+            displayAlert('Close on weekends','error','.form');
         } else {
             appointment.date = e.target.value;
         }
@@ -201,15 +203,17 @@ function seletTime() {
         } else {
             //closed
             e.target.value = '';
-            displayAlert('Open from 10am to 6pm','error');
+            displayAlert('Open from 10am to 6pm','error','.form');
         }
     });
 }
 
-function displayAlert(message, type) {
+function displayAlert(message, type, element,removeAlert = true) {
     //prevent duplicate alert
-    const prevAlert = document.querySelector('alert');
-    if (prevAlert) return;
+    const prevAlert = document.querySelector('.alert');
+    if (prevAlert) {
+        prevAlert.remove();
+    };
 
     //create alerts
     const alert = document.createElement('DIV');
@@ -217,11 +221,25 @@ function displayAlert(message, type) {
     alert.classList.add('alert');
     alert.classList.add(type);
 
-    const form = document.querySelector('.form');
+    const form = document.querySelector(element);
     form.appendChild(alert);
 
     //remove message after 3 sec
-    setTimeout(() => {
-        alert.remove();
-    }, 3000);
+    if(removeAlert) {
+        setTimeout(() => {
+            alert.remove();
+        }, 3000);
+    }
+}
+
+function displayResume() {
+    const resume = document.querySelector('.content-resume');
+
+    if (Object.values(appointment).includes('') || appointment.services.length === 0)  {
+        //console.log('Datos missing');
+        displayAlert('Services,date or time missing.','error','.content-resume',false);
+    } else {
+        console.log('all good');
+    }
+    //console.log(appointment);
 }
