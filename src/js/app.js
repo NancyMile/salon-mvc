@@ -126,7 +126,7 @@ function displayServices(services) {
         serviceDiv.classList.add('service');
         serviceDiv.dataset.idService = id  //data-id-service = id ej 1 ...
         serviceDiv.onclick = function () {
-            selecteService(service)
+            selectService(service)
         };
 
         //console.log(serviceDiv);
@@ -140,12 +140,28 @@ function displayServices(services) {
     });
 }
 
-function selecteService(service) {
+function selectService(service) {
     //console.log('from select service');
     //console.log(service)
+
+    const { id } = service;
+
     const { services } = appointment;
 
-    //takes a copy of services and adds the new service
-    appointment.services = [...services, service];
-    console.log(appointment);
+    const divService = document.querySelector(`[data-id-service="${id}"]`);
+
+    // checks if a service has been added
+    if (services.some(alreadyAdded => alreadyAdded.id === id)) {
+        //remmove service
+        appointment.services = services.filter(alreadyAdded => alreadyAdded.id !== id);
+        console.log(appointment);
+        divService.classList.remove('selected');
+
+    } else {
+        //add new service
+        //takes a copy of services and adds the new service
+        appointment.services = [...services, service];
+        console.log(appointment);
+        divService.classList.add('selected');
+    }
 }
