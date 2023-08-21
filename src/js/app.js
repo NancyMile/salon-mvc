@@ -181,8 +181,29 @@ function selectDate() {
         if ([0, 6].includes(day)) {
             //no working on weekends
             e.target.value = ''
+            displayAlert('Close on weekends','error');
         } else {
             appointment.date = e.target.value;
         }
     });
+}
+
+function displayAlert(message, type) {
+    //prevent duplicate alert
+    const prevAlert = document.querySelector('alert');
+    if (prevAlert) return;
+
+    //create alerts
+    const alert = document.createElement('DIV');
+    alert.textContent = message;
+    alert.classList.add('alert');
+    alert.classList.add(type);
+
+    const form = document.querySelector('.form');
+    form.appendChild(alert);
+
+    //remove message after 3 sec
+    setTimeout(() => {
+        alert.remove();
+    }, 3000);
 }
