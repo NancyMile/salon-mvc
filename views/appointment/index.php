@@ -35,4 +35,13 @@
         <p class="text-center">Please Check the details are correct.</p>
         <div class="services-list" id="services"></div>
     </div>
+    <div class="pagination">
+        <button id="previous" class="button">
+            &laquo; Previous
+        </button>
+
+        <button id="next" class="button">
+            Next &raquo;
+        </button>
+    </div>
 </div>
