@@ -104,7 +104,7 @@ function nextPage() {
 async function queryingAPI() {
 
     try {
-        const url = 'http://localhost:8080/services';
+        const url = 'http://localhost:8080/api/services';
         const result = await fetch(url);
         const services = await result.json();
         //console.log(services);
@@ -302,6 +302,20 @@ function displayResume() {
     //console.log(appointment);
 }
 
-function bookAppointment() {
-    console.log('Book Appointment');
+async function bookAppointment() {
+    //console.log('Book Appointment');
+    const data = new FormData();
+
+    //Petition api
+    const url = 'http://localhost:8080/api/services';
+
+    const response = await fetch(url, {
+        method: 'POST'
+    });
+
+    const result = await response.json();
+
+    console.log(result);
+    //console.log([...data]);
+
 }
