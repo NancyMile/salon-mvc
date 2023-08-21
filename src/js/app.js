@@ -250,16 +250,12 @@ function displayResume() {
     //all good, now format div resume
     const { name, date, time, services } = appointment;
 
-    const clientName = document.createElement('P');
-    clientName.innerHTML = `<span>Name:</span>${name}`;
+    //headig for services on resume
+    const headingServices = document.createElement('H3');
+    headingServices.textContent = "Services Resume";
+    resume.appendChild(headingServices);
 
-    const appointmentDate = document.createElement('P');
-    appointmentDate.innerHTML = `<span>Date:</span>${date}`;
-
-    const appointmentTime = document.createElement('P');
-    appointmentTime.innerHTML = `<span>Time:</span>${time}`;
-
-
+    //iterate services
     services.forEach(service => {
         const { id, name, price } = service;
         const containerService = document.createElement('DIV');
@@ -277,6 +273,20 @@ function displayResume() {
         //add on resume
         resume.appendChild(containerService);
     })
+
+    //headig for clent on resume
+    const headingAppointment = document.createElement('H3');
+    headingAppointment.textContent = "Appointment Resume";
+    resume.appendChild(headingAppointment);
+
+    const clientName = document.createElement('P');
+    clientName.innerHTML = `<span>Name:</span>${name}`;
+
+    const appointmentDate = document.createElement('P');
+    appointmentDate.innerHTML = `<span>Date:</span>${date}`;
+
+    const appointmentTime = document.createElement('P');
+    appointmentTime.innerHTML = `<span>Time:</span>${time}`;
 
     resume.appendChild(clientName);
     resume.appendChild(appointmentDate);
