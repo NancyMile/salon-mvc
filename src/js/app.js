@@ -4,6 +4,7 @@ let lastStep = 3;
 
 const appointment = {
     name: '',
+    id: '',
     date: '',
     time: '',
     services: []
@@ -20,6 +21,7 @@ function startApp() {
     previousPage();
     nextPage();
     queryingAPI();
+    clientId();
     clientName();
     selectDate(); //adds date to the appointment object
     seletTime(); // adds time on appoiment object
@@ -175,6 +177,10 @@ function clientName() {
     appointment.name = document.querySelector('#name').value;
 };
 
+function clientId() {
+    appointment.id = document.querySelector('#id').value;
+};
+
 function selectDate() {
     const inputDate = document.querySelector('#date');
     inputDate.addEventListener('input', function (e) {
@@ -304,16 +310,16 @@ function displayResume() {
 
 async function bookAppointment() {
     //console.log('Book Appointment');
-    const { name, date, time, services } = appointment;
+    const { id, name, date, time, services } = appointment;
     const idServices = services.map(service => service.id);
     //console.log(idServices);
     //return;
 
     const data = new FormData();
 
-    data.append('name', name);
     data.append('date', date);
     data.append('time', time);
+    data.append('user_id', id);
     data.append('services', idServices);
 
     //console.log([...data]);
@@ -329,7 +335,7 @@ async function bookAppointment() {
 
     const result = await response.json();
 
-    console.log(result);
+    //console.log(result);
     //console.log([...data]);
 
 }

@@ -8,7 +8,8 @@ class AppointmentController{
         session_start();
         //debuguear($_SESSION);
         $router->render('appointment/index',[
-            'name' => $_SESSION['name']
+            'name' => $_SESSION['name'],
+            'id' => $_SESSION['id']
         ]);
     }
 }

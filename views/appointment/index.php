@@ -27,6 +27,7 @@
                 <label for="time">time</label>
                 <input type="time" id="time">
             </div>
+            <input type="hidden" id="id" value="<?php echo $id; ?>">
         </form>
     </div>
     <div class="section content-resume" id="step-3">
