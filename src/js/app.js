@@ -288,9 +288,20 @@ function displayResume() {
     const appointmentTime = document.createElement('P');
     appointmentTime.innerHTML = `<span>Time:</span>${time}`;
 
+    //button to book appointment
+    const buttonBook = document.createElement('BUTTON');
+    buttonBook.classList.add('button');
+    buttonBook.textContent = 'Book Appointment';
+    buttonBook.onclick = bookAppointment;
+
     resume.appendChild(clientName);
     resume.appendChild(appointmentDate);
     resume.appendChild(appointmentTime);
 
+    resume.appendChild(buttonBook);
     //console.log(appointment);
+}
+
+function bookAppointment() {
+    console.log('Book Appointment');
 }

@@ -27,7 +27,6 @@
                 <label for="time">time</label>
                 <input type="time" id="time">
             </div>
-            <input type="submit" value="Book" class="button">
         </form>
     </div>
     <div class="section content-resume" id="step-3">
