@@ -4,11 +4,22 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 function startApp() {
+    displaySection();
     tabs(); //change sections whenever click on a tab
 }
 
 function displaySection() {
     //console.log('Displaying section');
+
+    //hide the secction that already hass the class visible
+    const previousSection = document.querySelector('.visible');
+    if (previousSection) {
+        previousSection.classList.remove('visible');
+    }
+
+    //display the section with the selected step
+    const section = document.querySelector(`#step-${step}`);
+    section.classList.add('visible');
 }
 
 function tabs() {
