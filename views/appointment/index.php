@@ -2,6 +2,11 @@
 <p class="page-description"> Appointments</p>
 <?php include_once __DIR__."/../templates/alerts.php"; ?>
 <div id="app">
+    <nav class="tabs">
+        <button type="button" data-stop="1" class="active">Services</button>
+        <button type="button" data-stop="2">Appointment Details</button>
+        <button type="button" data-stop="3">Resume</button>
+    </nav>
     <div class="section" id="step-1">
         <h1>Select Services</h1>
         <div class="services-list" id="services"></div>
