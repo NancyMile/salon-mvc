@@ -20,6 +20,7 @@ function startApp() {
     previousPage();
     nextPage();
     queryingAPI();
+    clientName();
 }
 
 function displaySection() {
@@ -165,3 +166,7 @@ function selectService(service) {
         divService.classList.add('selected');
     }
 }
+
+function clientName() {
+    appointment.name = document.querySelector('#name').value;
+};
