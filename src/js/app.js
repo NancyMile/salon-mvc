@@ -20,6 +20,15 @@ function displaySection() {
     //display the section with the selected step
     const section = document.querySelector(`#step-${step}`);
     section.classList.add('visible');
+
+    //remove prev tab highlight
+    const prevTab = document.querySelector('.active');
+    if (prevTab) {
+        prevTab.classList.remove('active')
+    }
+    //hightlight selected tab
+    const tab = document.querySelector(`[data-step="${step}"]`);
+    tab.classList.add('active');
 }
 
 function tabs() {
