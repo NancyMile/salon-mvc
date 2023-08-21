@@ -95,8 +95,37 @@ async function queryingAPI() {
         const url = 'http://localhost:8080/services';
         const result = await fetch(url);
         const services = await result.json();
-        console.log(services);
+        //console.log(services);
+        displayServices(services);
     } catch (error) {
         console.log(error);
     }
+}
+
+function displayServices(services) {
+    services.forEach(service => {
+        const { id, name, price } = service;
+        //console.log(name);
+
+        const serviceName = document.createElement('P');
+        serviceName.classList.add('service-name');
+        serviceName.textContent = name;
+
+        const servicePrice = document.createElement('P');
+        servicePrice.classList.add('service-price');
+        servicePrice.textContent = `$ ${price}`;
+
+        const serviceDiv = document.createElement('DIV');
+        serviceDiv.classList.add('service');
+        serviceDiv.dataset.idService = id  //data-id-service = id ej 1 ...
+
+        //console.log(serviceDiv);
+
+        serviceDiv.appendChild(serviceName);
+        serviceDiv.appendChild(servicePrice);
+
+        //add this div to appointmens
+        document.querySelector('#services').appendChild(serviceDiv);
+
+    });
 }
