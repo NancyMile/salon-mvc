@@ -304,13 +304,27 @@ function displayResume() {
 
 async function bookAppointment() {
     //console.log('Book Appointment');
+    const { name, date, time, services } = appointment;
+    const idServices = services.map(service => service.id);
+    //console.log(idServices);
+    //return;
+
     const data = new FormData();
+
+    data.append('name', name);
+    data.append('date', date);
+    data.append('time', time);
+    data.append('services', idServices);
+
+    //console.log([...data]);
+    //return;
 
     //Petition api
     const url = 'http://localhost:8080/api/services';
 
     const response = await fetch(url, {
-        method: 'POST'
+        method: 'POST',
+        body: data
     });
 
     const result = await response.json();
