@@ -325,17 +325,34 @@ async function bookAppointment() {
     //console.log([...data]);
     //return;
 
-    //Petition api
-    const url = 'http://localhost:8080/api/services';
+    try {
+        //Petition api
+        const url = 'http://localhost:8080/api/services';
 
-    const response = await fetch(url, {
-        method: 'POST',
-        body: data
-    });
+        const response = await fetch(url, {
+            method: 'POST',
+            body: data
+        });
 
-    const result = await response.json();
+        const result = await response.json();
 
-    //console.log(result);
+        //console.log(result.resultado);
+        if (result.resultado) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Appointment Created',
+                text: 'Created Successfully!',
+                button: 'Ok'
+            }).then(() => {
+                window.location.reload();
+            })
+        }
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Something went wrong!'
+          })
+    }
     //console.log([...data]);
-
 }
