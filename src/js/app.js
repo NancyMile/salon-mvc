@@ -1,4 +1,7 @@
 let step = 1;
+let initialStep = 1;
+let lastStep = 3;
+
 document.addEventListener('DOMContentLoaded', function () {
     startApp();
 })
@@ -7,6 +10,8 @@ function startApp() {
     displaySection();
     tabs(); //change sections whenever click on a tab
     paginationButtons(); //adds or removes pagination buttons
+    previousPage();
+    nextPage();
 }
 
 function displaySection() {
@@ -61,5 +66,24 @@ function paginationButtons() {
         prevPage.classList.remove('hide');
         nextPage.classList.remove('hide');
     }
+}
 
+function previousPage() {
+    const prevPage = document.querySelector('#previous');
+    prevPage.addEventListener('click', function () {
+        if (step <= initialStep) return
+            step--;
+        paginationButtons();
+        displaySection();
+    })
+}
+
+function nextPage() {
+    const nextPage = document.querySelector('#next');
+    nextPage.addEventListener('click', function () {
+        if (step >= lastStep) return
+            step++;
+        paginationButtons();
+        displaySection();
+    })
 }
