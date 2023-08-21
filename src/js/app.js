@@ -21,6 +21,7 @@ function startApp() {
     nextPage();
     queryingAPI();
     clientName();
+    selectDate(); //adds date to the appointment object
 }
 
 function displaySection() {
@@ -170,3 +171,18 @@ function selectService(service) {
 function clientName() {
     appointment.name = document.querySelector('#name').value;
 };
+
+function selectDate() {
+    const inputDate = document.querySelector('#date');
+    inputDate.addEventListener('input', function (e) {
+        //console.log("date selected");
+        //console.log(e.target.value);
+        const day = new Date(e.target.value).getUTCDay(); //days 0 t0 6 Sunday is 0
+        if ([0, 6].includes(day)) {
+            //no working on weekends
+            e.target.value = ''
+        } else {
+            appointment.date = e.target.value;
+        }
+    });
+}
