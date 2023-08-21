@@ -22,6 +22,7 @@ function startApp() {
     queryingAPI();
     clientName();
     selectDate(); //adds date to the appointment object
+    seletTime(); // adds time on appoiment object
 }
 
 function displaySection() {
@@ -184,6 +185,23 @@ function selectDate() {
             displayAlert('Close on weekends','error');
         } else {
             appointment.date = e.target.value;
+        }
+    });
+}
+
+function seletTime() {
+    const inputTime = document.querySelector('#time');
+    inputTime.addEventListener('input', function (e) {
+        //console.log(e.target.value)
+        const time = e.target.value;
+        const hour = time.split(':')[0];
+        if (hour > 10 && hour < 18) {
+            //valid hours
+            appointment.time = e.target.value;
+        } else {
+            //closed
+            e.target.value = '';
+            displayAlert('Open from 10am to 6pm','error');
         }
     });
 }
