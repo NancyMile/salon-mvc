@@ -10,10 +10,13 @@ use Model\Appointment;
     <form class="form">
         <div class="field">
             <label for="date">Date</label>
-            <input type="date" name="date" id="date">
+            <input type="date" name="date" id="date" value="<?php echo $date; ?>">
         </div>
     </form>
 </div>
+<?php if(count($appointments) === 0):?>
+    <h2>No Appointmenst on <?php echo $date; ?></h2>
+<?php endif; ?>
 <div id="appointments-admin">
     <ul class="appointments">
         <?php
@@ -47,3 +50,6 @@ use Model\Appointment;
     </ul>
     <?php //debuguear($appointments); ?>
 </div>
+<?php
+    $script = "<script src='build/js/search.js'></script>";
+?>
