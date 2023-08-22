@@ -22,6 +22,12 @@ function isAuth(){
     }
 }
 
+function isAdmin():void{
+    if(!isset($_SESSION['admin'])){
+        header('location: /');
+    }
+}
+
 function lastElement(string $actual, string $next): bool {
     if($actual !== $next){
         return true;

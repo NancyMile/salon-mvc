@@ -8,6 +8,8 @@ class AdminController {
 
     public static function index(Router $router){
         session_start();
+        isAdmin();
+
         $date = $_GET['date'] ?? date('Y-m-d');
         //check that is a valid date
         $verifyDate = explode('-',$date);

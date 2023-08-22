@@ -31,6 +31,7 @@ class loginController{
                     //redirect
                     if($user->admin === '1'){
                         //admin
+                        $_SESSION['admin'] = $user->admin ?? null;
                         header('location: /admin');
                     }else{
                         //client
