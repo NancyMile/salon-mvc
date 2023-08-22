@@ -38,6 +38,7 @@ $router->get('/admin',[AdminController::class,'index']);
 
 $router->get('/api/services',[APIController::class,'index']);
 $router->post('/api/services',[APIController::class,'save']);
+$router->post('/api/delete',[APIController::class,'delete']);
 
 
 

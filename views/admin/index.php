@@ -44,6 +44,10 @@ use Model\Appointment;
              $next = $appointments[$key +1]->id ?? 0; //check if is the last element
              if(lastElement($actual,$next)): ?>
                 <p>Total: <span><?php echo "$".$total; ?></span></p>
+                <form action="/api/delete" method="POST">
+                    <input type="hidden" name="id" value="<?php echo $appointment->id; ?>">
+                    <input type="submit" value="Delete" class="button-delete">
+                </form>
             </li>
         <?php endif;
             endforeach; ?>
