@@ -21,3 +21,10 @@ function isAuth(){
         header('location: /');
     }
 }
+
+function lastElement(string $actual, string $next): bool {
+    if($actual !== $next){
+        return true;
+    }
+    return false;
+}

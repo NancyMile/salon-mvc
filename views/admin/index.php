@@ -18,9 +18,10 @@ use Model\Appointment;
     <ul class="appointments">
         <?php
             $appointmentId = 0;
-            foreach($appointments as $appointment):
+            foreach($appointments as $key => $appointment):
                 //checks if the data if from same appointment
                 if($appointmentId !== $appointment->id):
+                    $total = 0;
         ?>
                     <li>
                         <p>ID: <span><?php echo $appointment->id; ?></span></p>
@@ -31,11 +32,18 @@ use Model\Appointment;
                         <h3>Services</h3>
         <?php
                 $appointmentId = $appointment->id;
-                endif;?>
-                    <p class="service"><?php echo $appointment->service ."   $".$appointment->price; ?></p>
-
-                    </li>
-        <?php  endforeach; ?>
+                endif;
+                $total += $appointment->price;
+        ?>
+                <p class="service"><?php echo $appointment->service ."   $".$appointment->price; ?></p>
+        <?php
+             $actual = $appointment->id;
+             $next = $appointments[$key +1]->id ?? 0; //check if is the last element
+             if(lastElement($actual,$next)): ?>
+                <p>Total: <span><?php echo "$".$total; ?></span></p>
+            </li>
+        <?php endif;
+            endforeach; ?>
     </ul>
     <?php //debuguear($appointments); ?>
 </div>
