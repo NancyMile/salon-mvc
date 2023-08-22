@@ -21,12 +21,12 @@ class AdminController {
         $query .= " ON services.id=appointments_services.service_id ";
         //$query .= " WHERE date =  '$date' ";
 
-        $result = AdminAppointment::SQL($query);
-
-        debuguear($result);
+        $appointments = AdminAppointment::SQL($query);
+        //debuguear($appointments);
 
         $router->render('admin/index',[
-            'name' => $_SESSION['name']
+            'name' => $_SESSION['name'],
+            'appointments' => $appointments
         ]);
     }
 }
