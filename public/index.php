@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\AdminController;
 use Controllers\APIController;
 use MVC\Router;
 use Controllers\loginController;
@@ -31,6 +32,7 @@ $router->get('/message',[loginController::class,'message']);
 
 //private
 $router->get('/appointment',[AppointmentController::class,'index']);
+$router->get('/admin',[AdminController::class,'index']);
 
 //API appointments
 
