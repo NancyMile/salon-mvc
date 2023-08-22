@@ -1,6 +1,9 @@
 <h1 class="page-name">Appointments</h1>
 <p class="page-description"> Appointments</p>
 <?php include_once __DIR__."/../templates/alerts.php"; ?>
+<div class="bar">
+    <p> Welcome <?php echo $name ?? '' ?></p>
+</div>
 <div id="app">
     <nav class="tabs">
         <button type="button" data-step="1" class="active">Services</button>
