@@ -310,7 +310,7 @@ function displayResume() {
 
 async function bookAppointment() {
     //console.log('Book Appointment');
-    const { id, name, date, time, services } = appointment;
+    const { id, date, time, services } = appointment;
     const idServices = services.map(service => service.id);
     //console.log(idServices);
     //return;
@@ -336,8 +336,8 @@ async function bookAppointment() {
 
         const result = await response.json();
 
-        //console.log(result.resultado);
-        if (result.resultado) {
+        //console.log(result.result);
+        if (result.result) {
             Swal.fire({
                 icon: 'success',
                 title: 'Appointment Created',
