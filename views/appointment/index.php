@@ -3,6 +3,7 @@
 <?php include_once __DIR__."/../templates/alerts.php"; ?>
 <div class="bar">
     <p> Welcome <?php echo $name ?? '' ?></p>
+    <a class="button" href="/logout">Logout</a>
 </div>
 <div id="app">
     <nav class="tabs">
