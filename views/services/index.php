@@ -7,6 +7,13 @@
         <li>
             <p>Name: <span><?php echo $service->name;?></span></p>
             <p>Price: <span>$<?php echo $service->price;?></span></p>
+            <div class="actions">
+                <a href="/services/update?id=<?php echo $service->id; ?>" class="button"> Edit</a>
+                <form action="/services/delete" method="POST">
+                    <input type="hidden" name="id" value="<?php echo$service->id; ?>">
+                    <input type="submit" value="Delete" class="button-delete">
+                </form>
+            </div>
         </li>
     <?php  endforeach; ?>
 </ul>

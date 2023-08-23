@@ -20,4 +20,14 @@
 
 .services {
     @extend .appointments;
+
+    .actions {
+        margin: 0;
+    }
+
+    .button,
+    .button-delete {
+        margin: 0;
+        margin-bottom: 1rem;
+    }
 }
