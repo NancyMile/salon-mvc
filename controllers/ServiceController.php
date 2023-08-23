@@ -64,10 +64,13 @@ class ServiceController{
         ]);
     }
 
-    public static function delete(Router $router){
+    public static function delete(){
         //echo "delete service";
+        if(!is_numeric($_POST['id'])) return;
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            
+            $service = Service::find($_POST['id']);
+            $service->eliminar();
+            header('location: /services');
         }
     }
 }
