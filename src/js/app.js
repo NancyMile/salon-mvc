@@ -106,7 +106,7 @@ function nextPage() {
 async function queryingAPI() {
 
     try {
-        const url = 'http://localhost:8080/api/services';
+        const url = '/api/services';
         const result = await fetch(url);
         const services = await result.json();
         //console.log(services);
@@ -327,7 +327,7 @@ async function bookAppointment() {
 
     try {
         //Petition api
-        const url = 'http://localhost:8080/api/services';
+        const url = '/api/services';
 
         const response = await fetch(url, {
             method: 'POST',
