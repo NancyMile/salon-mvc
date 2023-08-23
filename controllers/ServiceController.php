@@ -9,9 +9,11 @@ class ServiceController{
         //echo "display service";
         session_start();
 
+        $services = Service::all();
 
         $router->render('services/index',[
-            'name' => $_SESSION['name']
+            'name' => $_SESSION['name'],
+            'services' => $services
         ]);
     }
 
