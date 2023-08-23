@@ -9,6 +9,9 @@ class ServiceController{
         //echo "display service";
         session_start();
 
+        //protect routes
+        isAdmin();
+
         $services = Service::all();
 
         $router->render('services/index',[
@@ -20,6 +23,8 @@ class ServiceController{
     public static function create(Router $router){
         //echo "create service";
         session_start();
+        //protect routes
+        isAdmin();
         $service = new Service;
         $alerts = [];
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -42,6 +47,8 @@ class ServiceController{
     public static function update(Router $router){
         //echo "update service";
         session_start();
+        //protect routes
+        isAdmin();
 
         if(!is_numeric($_GET['id'])) return;
         $service = Service::find($_GET['id']);
@@ -65,6 +72,9 @@ class ServiceController{
     }
 
     public static function delete(){
+        session_start();
+        //protect routes
+        isAdmin();
         //echo "delete service";
         if(!is_numeric($_POST['id'])) return;
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
