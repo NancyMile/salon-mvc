@@ -1,6 +1,7 @@
 <?php
 namespace Controllers;
 
+use Model\Service;
 use MVC\Router;
 
 class ServiceController{
@@ -17,13 +18,22 @@ class ServiceController{
     public static function create(Router $router){
         //echo "create service";
         session_start();
+        $service = new Service;
+        $alerts = [];
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $service->sincronizar($_POST);
+            $alerts = $service->validateService();
 
-        if($_SERVER['REQUEST_MEETHOD'] === 'POST'){
-
+            if(empty($alerts)){
+                $service->guardar();
+                header('location: /services');
+            }
         }
 
         $router->render('services/create',[
-            'name' => $_SESSION['name']
+            'name' => $_SESSION['name'],
+            'service' => $service,
+            'alerts' => $alerts
         ]);
     }
 
@@ -31,7 +41,7 @@ class ServiceController{
         //echo "update service";
         session_start();
 
-        if($_SERVER['REQUEST_MEETHOD'] === 'POST'){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
             
         }
 
@@ -42,7 +52,7 @@ class ServiceController{
 
     public static function delete(Router $router){
         //echo "delete service";
-        if($_SERVER['REQUEST_MEETHOD'] === 'POST'){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
             
         }
     }
