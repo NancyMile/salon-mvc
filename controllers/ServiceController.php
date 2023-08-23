@@ -42,13 +42,19 @@ class ServiceController{
     public static function update(Router $router){
         //echo "update service";
         session_start();
-        $id = is_numeric($_GET['id']);
-        if(!$id) return
-        $service = Service::find($id);
+
+        if(!is_numeric($_GET['id'])) return;
+        $service = Service::find($_GET['id']);
         $alerts = [];
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            
+            $service->sincronizar($_POST);
+            $alerts = $service->validateService();
+
+            if(empty($alerts)){
+                $service->guardar();
+                header('location: /services');
+            }
         }
 
         $router->render('services/update',[
